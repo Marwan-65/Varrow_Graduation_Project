@@ -1,19 +1,27 @@
 variable "environment" {
-  description = "Environment name (e.g., dev, staging, prod)"
+  description = "Environment name (e.g., dev)"
   type        = string
-  default     = "dev"
+}
+
+variable "region" {
+  description = "AWS Region"
+  type        = string
+  default     = "us-east-1"
+}
+
+variable "cluster_name" {
+  description = "EKS cluster name used for subnet tagging"
+  type        = string
 }
 
 variable "vpc_cidr" {
   description = "VPC CIDR block"
   type        = string
-  default     = "10.10.0.0/16"
 }
 
 variable "azs" {
   description = "Availability zones"
   type        = list(string)
-  default     = ["us-east-1a", "us-east-1b"]
 }
 
 variable "public_subnet_cidrs" {

@@ -17,3 +17,7 @@ output "private_subnet_ids" {
 output "intra_subnet_ids" {
   value = module.vpc.intra_subnets
 }
+
+output "regional_nat_gateway_id" {
+  value = aws_nat_gateway.regional.id
+}
