@@ -9,3 +9,8 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
+variable "cluster_name" {
+  type        = string
+  description = "EKS cluster name"
+  default     = "varrow-eks-cluster"
+}
