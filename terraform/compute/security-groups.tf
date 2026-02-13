@@ -2,7 +2,6 @@
 # Security Groups for EKS and Jump Server
 ############################################
 
-
 # EKS Cluster Security Group
 resource "aws_security_group" "eks_cluster" {
   name        = "${var.environment}-${var.cluster_name}-cluster-sg"
@@ -25,6 +24,17 @@ resource "aws_security_group_rule" "eks_cluster_inbound" {
   protocol                 = "tcp"
   security_group_id        = aws_security_group.eks_cluster.id
   source_security_group_id = aws_security_group.eks_nodes.id
+}
+
+# ✅ NEW: Allow inbound API traffic from Jump Server to cluster
+resource "aws_security_group_rule" "eks_cluster_inbound_from_jump" {
+  description              = "Allow API access from Jump Server"
+  type                     = "ingress"
+  from_port                = 443
+  to_port                  = 443
+  protocol                 = "tcp"
+  security_group_id        = aws_security_group.eks_cluster.id
+  source_security_group_id = aws_security_group.jump_server.id
 }
 
 # Allow outbound from cluster to nodes
