@@ -45,3 +45,14 @@ output "jump_server_security_group_id" {
   description = "ID of the jump server security group"
   value       = aws_security_group.jump_server.id
 }
+
+# ECR outputs - so you can see the repository URL
+output "ecr_repository_url" {
+  description = "URL of the ECR repository for Nginx"
+  value       = aws_ecr_repository.nginx.repository_url
+}
+
+output "ecr_repository_arn" {
+  description = "ARN of the ECR repository"
+  value       = aws_ecr_repository.nginx.arn
+}

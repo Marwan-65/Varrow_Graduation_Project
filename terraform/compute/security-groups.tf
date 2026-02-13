@@ -7,7 +7,7 @@
 resource "aws_security_group" "eks_cluster" {
   name        = "${var.environment}-${var.cluster_name}-cluster-sg"
   description = "Security group for EKS cluster control plane"
-  vpc_id      = local.vpc_id 
+  vpc_id      = local.vpc_id
 
   tags = {
     Name        = "${var.environment}-${var.cluster_name}-cluster-sg"
@@ -42,7 +42,7 @@ resource "aws_security_group_rule" "eks_cluster_outbound" {
 resource "aws_security_group" "eks_nodes" {
   name        = "${var.environment}-${var.cluster_name}-nodes-sg"
   description = "Security group for EKS worker nodes"
-  vpc_id      = local.vpc_id 
+  vpc_id      = local.vpc_id # ← Using the existing local.vpc_id from main.tf
 
   tags = {
     Name        = "${var.environment}-${var.cluster_name}-nodes-sg"
@@ -99,7 +99,8 @@ resource "aws_security_group_rule" "eks_nodes_outbound" {
 resource "aws_security_group" "alb" {
   name        = "${var.environment}-${var.cluster_name}-alb-sg"
   description = "Security group for ALB"
-  vpc_id      = local.vpc_id 
+  vpc_id      = local.vpc_id # ← Using the existing local.vpc_id from main.tf
+
   tags = {
     Name        = "${var.environment}-${var.cluster_name}-alb-sg"
     Environment = var.environment
@@ -133,7 +134,7 @@ resource "aws_security_group_rule" "alb_outbound_to_nodes" {
 resource "aws_security_group" "jump_server" {
   name        = "${var.environment}-${var.cluster_name}-jump-sg"
   description = "Security group for Jump Server"
-  vpc_id      = local.vpc_id 
+  vpc_id      = local.vpc_id
 
   tags = {
     Name        = "${var.environment}-${var.cluster_name}-jump-sg"

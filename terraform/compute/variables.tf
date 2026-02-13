@@ -14,3 +14,8 @@ variable "cluster_name" {
   description = "EKS cluster name"
   default     = "varrow-eks-cluster"
 }
+variable "ecr_repository_name" {
+  description = "Name of the ECR repository for Nginx images"
+  type        = string
+  default     = "varrow-nginx"
+}
