@@ -1,11 +1,11 @@
 ############################################
 # ECR Repository for Nginx images
-# Task 3.4 - Container Registry
 ############################################
 
 resource "aws_ecr_repository" "nginx" {
   name = var.ecr_repository_name
 
+  # MUTABLE
   image_tag_mutability = "MUTABLE"
 
   # Automatically scan images for security vulnerabilities
@@ -20,7 +20,7 @@ resource "aws_ecr_repository" "nginx" {
   }
 }
 
-# clean up old images to save money
+# Automatically clean up old images to save money
 resource "aws_ecr_lifecycle_policy" "nginx" {
   repository = aws_ecr_repository.nginx.name
 
