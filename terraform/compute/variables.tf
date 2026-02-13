@@ -19,3 +19,9 @@ variable "ecr_repository_name" {
   type        = string
   default     = "varrow-nginx"
 }
+
+variable "eks_version" {
+  description = "Kubernetes version for EKS cluster"
+  type        = string
+  default     = "1.31"
+}
