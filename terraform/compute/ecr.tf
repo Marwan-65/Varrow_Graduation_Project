@@ -20,7 +20,7 @@ resource "aws_ecr_repository" "nginx" {
   }
 }
 
-# Automatically clean up old images to save money
+# Automatically clean up old images
 resource "aws_ecr_lifecycle_policy" "nginx" {
   repository = aws_ecr_repository.nginx.name
 

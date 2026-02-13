@@ -42,7 +42,7 @@ resource "aws_security_group_rule" "eks_cluster_outbound" {
 resource "aws_security_group" "eks_nodes" {
   name        = "${var.environment}-${var.cluster_name}-nodes-sg"
   description = "Security group for EKS worker nodes"
-  vpc_id      = local.vpc_id 
+  vpc_id      = local.vpc_id
 
   tags = {
     Name        = "${var.environment}-${var.cluster_name}-nodes-sg"
@@ -99,7 +99,7 @@ resource "aws_security_group_rule" "eks_nodes_outbound" {
 resource "aws_security_group" "alb" {
   name        = "${var.environment}-${var.cluster_name}-alb-sg"
   description = "Security group for ALB"
-  vpc_id      = local.vpc_id 
+  vpc_id      = local.vpc_id
 
   tags = {
     Name        = "${var.environment}-${var.cluster_name}-alb-sg"

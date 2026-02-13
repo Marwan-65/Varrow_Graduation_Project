@@ -14,7 +14,7 @@ resource "aws_eks_cluster" "main" {
     endpoint_public_access  = true
     endpoint_private_access = true
     security_group_ids      = [aws_security_group.eks_cluster.id]
-    public_access_cidrs     = ["0.0.0.0/0"] # from anywhere _ FOR DEVELOPMENT ONLY
+    public_access_cidrs     = ["0.0.0.0/0"] # Open Access - FOR DEVELOPMENT ONLY
   }
 
   enabled_cluster_log_types = [
