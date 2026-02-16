@@ -10,12 +10,16 @@ resource "aws_eks_cluster" "main" {
   version  = var.eks_version
 
   vpc_config {
-    subnet_ids              = local.private_subnet_ids
-    endpoint_public_access  = true
-    endpoint_private_access = true
-    security_group_ids      = [aws_security_group.eks_cluster.id]
-    public_access_cidrs     = ["0.0.0.0/0"] # Open Access - FOR DEVELOPMENT ONLY
-  }
+  
+  subnet_ids              = concat(
+    local.private_subnet_ids, 
+    ["subnet-03c3d1d5a96f3bab0", "subnet-0db44bffb3b797f04"]
+  )
+  endpoint_public_access  = true
+  endpoint_private_access = true
+  security_group_ids      = [aws_security_group.eks_cluster.id]
+  public_access_cidrs     = ["0.0.0.0/0"]
+}
 
   enabled_cluster_log_types = [
     "api",

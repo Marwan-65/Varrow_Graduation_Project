@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: default
+data:
+  default.conf: |
+    server {
+        listen 80;
+        server_name _;
+        
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+        
+        location / {
+            try_files $uri $uri/ /index.html;
+        }
+        
+        location /health {
+            access_log off;
+            return 200 "healthy\n";
+        }
+    }
+    
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>VArrow Academy EKS Demo</title>
+        <style>
+            body { font-family: Arial; text-align: center; margin-top: 50px; }
+            h1 { color: #06b6d4; }
+            .info { color: #666; }
+        </style>
+    </head>
+    <body>
+        <h1> VArrow Academy DevOps</h1>
+        <h2>EKS Cluster Deployment Success!</h2>
+        <p class="info">Nginx running on Amazon EKS</p>
+        <p><small>ALB Ingress | Terraform</small></p>
+    </body>
+    </html>

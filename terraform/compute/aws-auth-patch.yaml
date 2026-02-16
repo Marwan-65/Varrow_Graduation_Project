@@ -1,0 +1,11 @@
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::881605784291:role/dev-varrow-eks-cluster-eks-node-role
+      username: system:node:{{EC2PrivateDNSName}}
+    - groups:
+      - system:masters
+      rolearn: arn:aws:iam::881605784291:role/dev-varrow-eks-cluster-jump-server-role
+      username: jump-server
